@@ -5,7 +5,7 @@ from net import Net
 import torch
 import torch.nn.functional as F
 
-from flask import Flask
+from flask import Flask, request
 app = Flask(__name__)
 
 MODEL_PATH = '../ml_src/model/yakimono_proto.pt'
@@ -18,13 +18,17 @@ def hello():
     return "Hello World!"
 
 
-@app.route("/yakimono")
+@app.route("/yakimono", method=["POST"])
 def yakimono():
+
+    _file = request.files["file"]
+    _file.save('/tmp/img')
+
     model = Net()
     model.load_state_dict(torch.load(MODEL_PATH))
     model = model.eval()
 
-    image = io.imread(IMG_NAME)
+    image = io.imread('/tmp/img')
     image = imresize(image, (128, 128), interp='nearest')
     image = image/255
     _input = torch.Tensor(image).reshape((1, 3, 128, 128))

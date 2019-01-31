@@ -18,7 +18,7 @@ def hello():
     return "Hello World!"
 
 
-@app.route("/yakimono", method=["POST"])
+@app.route("/yakimono", methods=["POST"])
 def yakimono():
 
     _file = request.files["file"]

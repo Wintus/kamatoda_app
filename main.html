@@ -4838,6 +4838,7 @@ var elm$html$Html$Attributes$action = function (uri) {
 		'action',
 		_VirtualDom_noJavaScriptUri(uri));
 };
+var elm$html$Html$Attributes$enctype = elm$html$Html$Attributes$stringProperty('enctype');
 var elm$html$Html$Attributes$method = elm$html$Html$Attributes$stringProperty('method');
 var elm$html$Html$Attributes$type_ = elm$html$Html$Attributes$stringProperty('type');
 var author$project$Main$view = function (model) {
@@ -4846,7 +4847,8 @@ var author$project$Main$view = function (model) {
 		_List_fromArray(
 			[
 				elm$html$Html$Attributes$action('/yakimono'),
-				elm$html$Html$Attributes$method('post')
+				elm$html$Html$Attributes$method('post'),
+				elm$html$Html$Attributes$enctype('multipart/form-data')
 			]),
 		_List_fromArray(
 			[

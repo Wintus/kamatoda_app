@@ -35,7 +35,7 @@ update msg model =
 -- VIEW
 view : Model -> Html Msg
 view model =
-    Html.form [ action "/yakimono", method "post"]
+    Html.form [ action "/yakimono", method "post", enctype "multipart/form-data"]
     [
   div []
       [ input [ type_ "file"] []

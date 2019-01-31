@@ -1,3 +1,4 @@
+import json
 from skimage import io
 from scipy.misc import imresize
 
@@ -42,6 +43,6 @@ if __name__ == '__main__':
     output = model(_input)
     labs = ["arita", "mino", "seto"]
     dic = {}
-    for pred, lab in zip(F.softmax(output)[0], labs):
+    for pred, lab in zip(F.softmax(output, dim=1)[0], labs):
         dic[lab] = float(pred)
-    print(dic)
+    print(json.dumps(dic))

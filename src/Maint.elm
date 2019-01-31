@@ -1,23 +1,44 @@
 import Browser
-import Html exposing (Html, button, div, text)
-import Html.Events exposing (onClick)
+import Html exposing (Html, Attribute, div, input, text,form)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onInput)
 
+
+-- MAIN
 main =
-  Browser.sandbox { init = 0, update = update, view = view }
+  Browser.sandbox { init = init, update = update, view = view }
 
-type Msg = Increment | Decrement
 
+-- MODEL
+type alias Model =
+  { content : String
+  }
+
+
+init : Model
+init =
+  { content = "" }
+
+
+-- UPDATE
+type Msg
+  = Change String
+
+
+update : Msg -> Model -> Model
 update msg model =
   case msg of
-    Increment ->
-      model + 1
+    Change newContent ->
+      { model | content = newContent }
 
-    Decrement ->
-      model - 1
 
+-- VIEW
+view : Model -> Html Msg
 view model =
+    Html.form [ action "/yakimono", method "post"]
+    [
   div []
-    [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (String.fromInt model) ]
-    , button [ onClick Increment ] [ text "+" ]
-    ]
+      [ input [ type_ "file"] []
+      ,  input [ type_ "submit"] []
+   ]
+ ]
